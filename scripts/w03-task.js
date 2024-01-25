@@ -71,7 +71,7 @@ document.getElementById('array').innerHTML = array;
 
 /* Output Odds Only Array */
 
-document.getElementById('odds').innerHTML = array.filter((i) => i % 2); // i am using i for inicial or starting index
+document.getElementById('odds').innerHTML = array.filter((i) => i % 2); // i am using i for inicial or starting index vlaue
 
 /* Output Evens Only Array */
 
@@ -86,3 +86,5 @@ document.getElementById('sumOfArray').innerHTML = array.reduce((i, nextValue) =>
 document.getElementById('multiplied').innerHTML = array.map((i) => i * 2);
 
 /* Output Sum of Multiplied by 2 Array */
+
+document.getElementById('sumOfMultiplied').innerHTML = (array.map((i) => i * 2)).reduce((i, nextValue) => i + nextValue);
