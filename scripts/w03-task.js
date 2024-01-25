@@ -54,7 +54,7 @@ document.querySelector('#divideNumbers').addEventListener('click', divideNumbers
 const getTotal = function() {
 
     let subtotal = Number(document.getElementById('subtotal').value);
-    let member = document.getElementById('member').checked; // WHY NOT TELL ME ABOUT .CHECKED :C I spent way to long
+    let member = document.getElementById('member').checked; // ... so this whole time i needed a .funtion
                                             
     if (member == true) {document.getElementById('total').innerHTML = multiply(subtotal, .80)}
     else if (member == false) {document.getElementById('total').innerHTML = subtotal}
