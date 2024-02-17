@@ -1,14 +1,20 @@
 // import section <>
+// predefine <>
 
-// outer var, let, const <>
+
 const generalSituation = document.getElementById("generalSituation");
 const weatherForecast = document.getElementById("weatherForecast");
 const rawData = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en"
 
-// small funtions <>
-function displaytest(report) {report.forEach((i) => console.log(i.display))}
 
-function reset(element) {element.innerHTML = "";}
+// small funtions ------- suports
+// small funtions ------- string fixing
+// small funtions ------- display 
+
+function reset(element) {element.innerHTML = "";} // dat for data but a singular pice 
+function aDisplayTest(report) {report.forEach((dat) => console.log(dat.display))}
+// function caseAction(report, cas) {report = report[0] + report.filter(dat => dat.week.toLowerCase().includes(cas)); return report.flat();} 
+
 
 function fixDate(string) {
         
@@ -18,7 +24,6 @@ function fixDate(string) {
     return text.join("");
 
 }
-
 function removePeriod(string) { 
     
     if (string[string.length - 1] == ".") 
@@ -28,10 +33,25 @@ function removePeriod(string) {
         string = string.join("");
     }
     return string;
-}
+} // add a capital remover
 
 
-// large funtions
+                                            //display 
+
+function display(report) {report.forEach((dat) => {
+
+    if (dat.week === "NA") {generalSituation.textContent = dat.display}
+    else {
+
+        let par = document.createElement('p');
+        par.textContent = dat.display;
+        weatherForecast.appendChild(par);
+    }
+})}
+
+
+// large funtions         ----------------  organize 
+// large funtions         ----------------  switch
 
 function OrganizeReport(report) {
 
@@ -50,7 +70,7 @@ function OrganizeReport(report) {
         {
             week: dat.week,
             display: `Date: ${dat.forecastDate} | day: ${dat.week} | 
-                      Forecast for today is ${removePeriod(dat.forecastWeather)} | 
+                      Forecast for this day ${removePeriod(dat.forecastWeather)} | 
                       The Wind Report shows ${removePeriod(dat.forecastWind)} |
                       Tempetures range from ${dat.forecastMintemp.value} to ${dat.forecastMaxtemp.value} in Celcious | 
                       Rain percent is looking to be around ${dat.forecastMinrh.value} to ${dat.forecastMaxrh.value} |
@@ -61,22 +81,37 @@ function OrganizeReport(report) {
     return list;
 }
 
+function switchDisplay(report) {
 
-function display(report) {report.forEach((dat) => {
+    reste(weatherForecast);
+    let filter = document.getElementById("filtered").value;
+    switch(filter) {
 
-        if (dat.week === "NA") {generalSituation.textContent = dat.display}
-        else {
+        case "sun":
+            display(report.filter(dat => dat.week.toLowerCase().includes("sunday", 1)));
+            break
+        case "mun":
+            break
+        case "tus":
+            break
+        case "wed":
+            break
+        case "thr":
+            break
+        case "fry":
+            break
+        case "sat":
+            break
+        case "all":
+            display(report);
+            break
+        default:
+            break
+}}
 
-            let par = document.createElement('p');
-            par.textContent = dat.display;
-            weatherForecast.appendChild(par);
-        }
-})}
 
-
-
-// async funtion or MAIN funtion
-// async funtion or MAIN funtion
+// async funtion or MAIN funtion -- realm of tests
+// async funtion or MAIN funtion -- main
 
 async function main() {
     
@@ -86,9 +121,10 @@ async function main() {
     {
         report = await data.json();                 //console.log(report);
         report = OrganizeReport(report);            //console.log(report);
-                                                    //displaytest(report);
-        display(report);
-    }
+                                                    //aDisplayTest(report);
+                                                    //display(report);
+        switchDisplay(report);                      //console.log(report);
+    }                                            
 }
 
 

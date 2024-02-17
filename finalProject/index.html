@@ -17,7 +17,20 @@
 </head>
 <body>
     <main>
-      <h1>Hong Kong Weather Report</h1>
+      <div id="mainDiv">
+        <h1>Hong Kong Weather Report</h1>
+        <select id="filtered" title="Choose a data filter.">
+          <option value="" disabled selected>Filter days</option>
+          <option value="sun">Sunday</option>
+          <option value="mun">munday</option>
+          <option value="tus">tuseday</option>
+          <option value="wed">wednesday</option>
+          <option value="thr">thirsday</option>
+          <option value="fry">fryday</option>
+          <option value="sat">saterday</option>
+          <option value="all">No Filter</option>
+        </select>
+     </div>
       <hr>
       <p id="generalSituation"></p>
       <div id="weatherForecast">
