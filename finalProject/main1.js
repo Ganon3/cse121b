@@ -46,8 +46,7 @@ function display(report) {report.forEach((dat) => {
         let par = document.createElement('p');
         par.textContent = dat.display;
         weatherForecast.appendChild(par);
-    }
-})}
+    }})}
 
 
 // large funtions         ----------------  organize 
