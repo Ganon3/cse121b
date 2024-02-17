@@ -83,29 +83,37 @@ function OrganizeReport(report) {
 
 function switchDisplay(report) {
 
-    reste(weatherForecast);
+    reset(weatherForecast);
     let filter = document.getElementById("filtered").value;
-    switch(filter) {
+    switch(filter) { // WARNING1: need to fiqure out a better way to filter week without taking week NA away
 
         case "sun":
-            display(report.filter(dat => dat.week.toLowerCase().includes("sunday", 1)));
+            //display(caseAction(report, "sun"));
+            display(report.filter(dat => dat.week.toLowerCase().includes("sun")));
             break
-        case "mun":
+        case "mon":
+            display(report.filter(dat => dat.week.toLowerCase().includes("mon")));
             break
         case "tus":
+            display(report.filter(dat => dat.week.toLowerCase().includes("tues")));
             break
         case "wed":
+            display(report.filter(dat => dat.week.toLowerCase().includes("wednes")));
             break
         case "thr":
+            display(report.filter(dat => dat.week.toLowerCase().includes("thurs")));
             break
-        case "fry":
+        case "fri":
+            display(report.filter(dat => dat.week.toLowerCase().includes("fri")));
             break
         case "sat":
+            display(report.filter(dat => dat.week.toLowerCase().includes("satur")));
             break
         case "all":
             display(report);
             break
         default:
+            display(report);
             break
 }}
 
@@ -122,7 +130,7 @@ async function main() {
         report = await data.json();                 //console.log(report);
         report = OrganizeReport(report);            //console.log(report);
                                                     //aDisplayTest(report);
-                                                    //display(report);
+                                                    display(report); //-- while my comment warrning1 is up
         switchDisplay(report);                      //console.log(report);
     }                                            
 }
@@ -133,3 +141,5 @@ async function main() {
 // activation place
 console.log("let us get started");
 main();
+
+document.querySelector("#filtered").addEventListener("change", () => {switchDisplay(report);})
