@@ -1,5 +1,5 @@
 // import section <>
-// predefine <>
+// predefined <>
 
 
 const generalSituation = document.getElementById("generalSituation");
@@ -13,8 +13,6 @@ const rawData = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dat
 
 function reset(element) {element.innerHTML = "";} // dat for data but a singular pice 
 function aDisplayTest(report) {report.forEach((dat) => console.log(dat.display))}
-// function caseAction(report, cas) {report = report[0] + report.filter(dat => dat.week.toLowerCase().includes(cas)); return report.flat();} 
-
 
 function fixDate(string) {
         
@@ -33,7 +31,7 @@ function removePeriod(string) {
         string = string.join("");
     }
     return string;
-} // add a capital remover
+} // add a capital remover -- turn them into one coae later
 
 
                                             //display 
@@ -64,13 +62,13 @@ function OrganizeReport(report) {
 
     report.weatherForecast.forEach((dat) => { 
          
-        dat.forecastDate = fixDate(dat.forecastDate); removePeriod(dat.forecastWind)
+        dat.forecastDate = fixDate(dat.forecastDate); 
         let text = 
         {
             week: dat.week,
             display: `Date: ${dat.forecastDate} | day: ${dat.week} | 
-                      Forecast for this day ${removePeriod(dat.forecastWeather)} | 
-                      The Wind Report shows ${removePeriod(dat.forecastWind)} |
+                      Forecast for this day ${dat.forecastWeather} | 
+                      The Wind Report shows ${dat.forecastWind} |
                       Tempetures range from ${dat.forecastMintemp.value} to ${dat.forecastMaxtemp.value} in Celcious | 
                       Rain percent is looking to be around ${dat.forecastMinrh.value} to ${dat.forecastMaxrh.value} |
                       Finaly, for those who want to know, the PSR is ${dat.PSR}`
@@ -83,11 +81,13 @@ function OrganizeReport(report) {
 function switchDisplay(report) {
 
     reset(weatherForecast);
+    reset(generalSituation);
+    display(report.filter(dat => dat.week.toLowerCase().includes("na")));
+
     let filter = document.getElementById("filtered").value;
     switch(filter) { // WARNING1: need to fiqure out a better way to filter week without taking week NA away
 
         case "sun":
-            //display(caseAction(report, "sun"));
             display(report.filter(dat => dat.week.toLowerCase().includes("sun")));
             break
         case "mon":
@@ -112,7 +112,6 @@ function switchDisplay(report) {
             display(report);
             break
         default:
-            display(report);
             break
 }}
 
@@ -129,7 +128,7 @@ async function main() {
         report = await data.json();                 //console.log(report);
         report = OrganizeReport(report);            //console.log(report);
                                                     //aDisplayTest(report);
-                                                    display(report); //-- while my comment warrning1 is up
+                                                    //display(report); //-- while my comment warrning1 is up
         switchDisplay(report);                      //console.log(report);
     }                                            
 }
