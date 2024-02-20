@@ -31,7 +31,7 @@ function cleanString(string) {
         string = string.join("");
     }
     
-    return string.toLowerCase();;
+    return string.toLowerCase();
 } 
 
 
@@ -68,8 +68,8 @@ function OrganizeReport(report) {
         {
             week: dat.week,
             display: `Date: ${dat.forecastDate} | day: ${dat.week} | 
-                      Forecast for this day ${removePeriod(dat.forecastWeather)} | 
-                      The Wind Report shows ${removePeriod(dat.forecastWind)} |
+                      Forecast for this day ${cleanString(dat.forecastWeather)} | 
+                      The Wind Report shows ${cleanString(dat.forecastWind)} |
                       Tempetures range from ${dat.forecastMintemp.value} to ${dat.forecastMaxtemp.value} in Celcious | 
                       Rain percent is looking to be around ${dat.forecastMinrh.value} to ${dat.forecastMaxrh.value} |
                       Finaly, for those who want to know, the PSR is ${dat.PSR}`
