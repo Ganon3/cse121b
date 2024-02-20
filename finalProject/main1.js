@@ -58,17 +58,17 @@ function OrganizeReport(report) {
             week: "NA",
             display: report.generalSituation,
 
-        });
+        }); // this should alwas be at index 0
 
     report.weatherForecast.forEach((dat) => { 
          
-        dat.forecastDate = fixDate(dat.forecastDate); 
+        dat.forecastDate = fixDate(dat.forecastDate);
         let text = 
         {
             week: dat.week,
             display: `Date: ${dat.forecastDate} | day: ${dat.week} | 
-                      Forecast for this day ${dat.forecastWeather} | 
-                      The Wind Report shows ${dat.forecastWind} |
+                      Forecast for this day ${removePeriod(dat.forecastWeather)} | 
+                      The Wind Report shows ${removePeriod(dat.forecastWind)} |
                       Tempetures range from ${dat.forecastMintemp.value} to ${dat.forecastMaxtemp.value} in Celcious | 
                       Rain percent is looking to be around ${dat.forecastMinrh.value} to ${dat.forecastMaxrh.value} |
                       Finaly, for those who want to know, the PSR is ${dat.PSR}`
@@ -85,7 +85,7 @@ function switchDisplay(report) {
     display(report.filter(dat => dat.week.toLowerCase().includes("na")));
 
     let filter = document.getElementById("filtered").value;
-    switch(filter) { // WARNING1: need to fiqure out a better way to filter week without taking week NA away
+    switch(filter) {
 
         case "sun":
             display(report.filter(dat => dat.week.toLowerCase().includes("sun")));
@@ -128,7 +128,7 @@ async function main() {
         report = await data.json();                 //console.log(report);
         report = OrganizeReport(report);            //console.log(report);
                                                     //aDisplayTest(report);
-                                                    //display(report); //-- while my comment warrning1 is up
+                                                    //display(report); 
         switchDisplay(report);                      //console.log(report);
     }                                            
 }
