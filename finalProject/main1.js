@@ -22,16 +22,15 @@ function fixDate(string) {
     return text.join("");
 
 }
-function cleanString(string) { 
-    
-    if (string[string.length - 1] == ".") 
-    {
-        string = string.split("");
+function cleanString(string) {if (string[string.length - 1] == ".")
+
+    {string = string.split("");
+
         string[string.length - 1] = "";
-        string = string.join("");
-    }
-    
-    return string.toLowerCase();
+        string[0] = string[0].toLowerCase();
+        
+    string = string.join("");}
+    return string            
 } 
 
 
@@ -45,6 +44,7 @@ function display(report) {report.forEach((dat) => {
         let par = document.createElement('p');
         par.textContent = dat.display;
         weatherForecast.appendChild(par);
+        
     }})}
 
 
@@ -121,7 +121,7 @@ function switchDisplay(report) {
 // async funtion or MAIN funtion -- main
 
 async function main() {
-    
+
     let data = await fetch(rawData);
 
             if (data.ok)                               //realm of tests
