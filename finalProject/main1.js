@@ -22,7 +22,7 @@ function fixDate(string) {
     return text.join("");
 
 }
-function removePeriod(string) { 
+function cleanString(string) { 
     
     if (string[string.length - 1] == ".") 
     {
@@ -30,8 +30,9 @@ function removePeriod(string) {
         string[string.length - 1] = "";
         string = string.join("");
     }
-    return string;
-} // add a capital remover -- turn them into one coae later
+    
+    return string.toLowerCase();;
+} 
 
 
                                             //display 
