@@ -64,12 +64,11 @@ function OrganizeReport(report) {
 
     report.weatherForecast.forEach((dat) => { 
          
-        dat.forecastDate = fixDate(dat.forecastDate);
         let text = 
         {
             week: dat.week,
-            display: `Date: ${dat.forecastDate} | day: ${dat.week} | 
-                      Forecast for this day ${cleanString(dat.forecastWeather)} | 
+            display: `Date: ${fixDate(dat.forecastDate)} | day: ${dat.week} | 
+                      Forecast for this day is ${cleanString(dat.forecastWeather)} | 
                       The Wind Report shows ${cleanString(dat.forecastWind)} |
                       Tempetures range from ${dat.forecastMintemp.value} to ${dat.forecastMaxtemp.value} in Celcious | 
                       Rain percent is looking to be around ${dat.forecastMinrh.value} to ${dat.forecastMaxrh.value} |
