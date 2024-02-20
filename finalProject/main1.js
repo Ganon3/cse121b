@@ -8,11 +8,12 @@ const rawData = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dat
 
 
 // small funtions ------- suports
-// small funtions ------- string fixing
+// small funtions ------- string fixing           // eventualy make it one funtion with a switch maybe
 // small funtions ------- display 
 
 function reset(element) {element.innerHTML = "";} // dat for data but a singular pice 
 function aDisplayTest(report) {report.forEach((dat) => console.log(dat.display))}
+
 
 function fixDate(string) {
         
@@ -44,7 +45,7 @@ function display(report) {report.forEach((dat) => {
         let par = document.createElement('p');
         par.textContent = dat.display;
         weatherForecast.appendChild(par);
-        
+
     }})}
 
 
